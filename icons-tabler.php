@@ -404,14 +404,9 @@
     </div>
     <!-- END wrapper -->
 
-    <!-- Vendor js -->
-    <script src="assets/js/vendor.min.js"></script>
-
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
+    <?php 
+        include "scripts.php";    
+    ?>
 
 </body>
-
-
-<!-- Mirrored from coderthemes.com/adminto/layouts/icons-tabler.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Nov 2025 04:58:50 GMT -->
 </html>

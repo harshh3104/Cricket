@@ -1,9 +1,28 @@
+<?php 
+    include "connection.php";
+
+    if(isset($_POST['btn']))
+    {
+        move_uploaded_file($_FILES['tlogo']['tmp_name'],"images/".$_FILES['tlogo']['name']);
+        $img=$_FILES['tlogo']['name'];                
+        
+        $str="insert into tournaments(name,category,logo) values('".$_POST['tname']."','".$_POST['tcategory']."','".$img."')";
+        $res=mysqli_query($conn,$str);
+        if ($res) {
+            // Success!
+            $valid = "<div class='alert alert-success text-center'><strong>Tournament Added!</strong></div>";
+        } else {
+            // Failed! Show the error message
+            $valid = "<div class='alert alert-danger text-center'><strong>Error:</strong> " . mysqli_error($conn) . "</div>";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
-    <title>Error 404</title>
+    <title>Add Tournaments | CrickFolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -15,71 +34,89 @@
 </head>
 
 <body>
-    <!-- Begin page -->
     <div class="wrapper">
-
         <!-- Menu -->
+
         <!-- Sidenav Menu Start -->
+        
         <?php 
             include "sidebar.php";
-        ?>        
+        ?>
+        
+        <!-- Sidenav Menu End -->
+        
         <!-- Topbar Start -->
+        
         <?php 
             include "topbar.php";
         ?>
+        
         <!-- Topbar End -->
-
-        <!-- Search Modal -->
-        <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content bg-transparent">
-                    <form>
-                        <div class="card mb-1">
-                            <div class="px-3 py-2 d-flex flex-row align-items-center" id="top-search">
-                                <i class="ri-search-line fs-22"></i>
-                                <input type="search" class="form-control border-0" id="search-modal-input"
-                                    placeholder="Search for actions, people,">
-                                <button type="submit" class="btn p-0" data-bs-dismiss="modal" aria-label="Close">[esc]</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
         <!-- ============================================================== -->
-
+        
         <div class="page-content">
-
             <div class="page-container">
-
-                <div class="row justify-content-center">
-                    <div class="col-lg-4">
-                        <div class="text-center">
-                            <img src="assets/images/error/error-404.png" height="230" alt="File not found Image">
-
-                            <h4 class="text-uppercase text-danger mt-3">Page Not Found</h4>
-                            <p class="text-muted mt-3">It's looking like you may have taken a wrong turn. Don't worry...
-                                it
-                                happens to the best of us. Here's a
-                                little tip that might help you get back on track.</p>
-
-                            <a class="btn btn-info mt-3" href="index.php"><i class="ti ti-home me-1"></i> Return
-                                Home</a>
-                        </div> <!-- end /.text-center-->
-                    </div> <!-- end col-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header border-bottom border-dashed">
+                                    <h2 class="header-title mb-2">Add Tounaments</h2>                            
+                                </div>
+                                <br>
+                                <?php 
+                                    if(isset($valid))
+                                    {
+                                        echo $valid;
+                                    }
+                                ?>                        
+                                <div class="card-body">
+                                <form class="needs-validation" method="POST" enctype="multipart/form-data" novalidate>
+                                    <div class="mb-3">
+                                        <label class="form-label lb" for="name">Enter Tournament Name</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Enter Tournament Name" name="tname" required>
+                                        <div class="invalid-feedback">
+                                            Please Enter Tournament Name..
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label lb" for="category">Enter Tournament Category</label>
+                                        <select class="form-select" data-choices name="tcategory" id="category" required>
+                                            <option value="" selected disabled>Select Category</option>
+                                            <option value="college">College</option>
+                                            <option value="district">District</option>
+                                            <option value="national">National</option>
+                                            <option value="open">Open</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please Provide Tournament Category..
+                                        </div>
+                                    </div>                                    
+                                    <div class="mb-3">
+                                        <label class="form-label lb" for="logo">Enter Tournament Logo</label>
+                                        <input type="file" class="form-control" id="logo" placeholder="Enter Logo" name="tlogo" required>
+                                        <div class="invalid-feedback">
+                                            Please Choose Tournament Logo..
+                                        </div>
+                                    </div>                                                                        
+                                    <button class="btn btn-primary lb w-25" name="btn" type="submit">Insert</button>
+                                </form>
+                                </div> <!-- end card body-->
+                            </div> <!-- end card -->
+                        </div><!-- end col-->
+                    </div> <!-- end row-->
                 </div>
-                <!-- end row -->
-
-            </div> <!-- container -->
-
+            </div>
             <!-- Footer Start -->
+
             <?php 
                 include "footer.php";
             ?>
-            <!-- end Footer -->
 
+            <!-- Footer End -->
         </div>
 
         <!-- ============================================================== -->
@@ -510,17 +547,9 @@
                 </div>
             </div>
         </div>
-
-        <div class="d-flex align-items-center gap-2 px-3 py-2 offcanvas-header border-top border-dashed">
-            <button type="button" class="btn w-50 btn-soft-danger" id="reset-layout">Reset</button>
-            <a href="https://1.envato.market/coderthemes" target="_blank" class="btn w-50 btn-soft-info">Buy Now</a>
-        </div>
-
     </div>
-    
     <?php 
-        include "scripts.php";    
+        include "scripts.php";
     ?>
-
 </body>
 </html>

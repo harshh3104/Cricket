@@ -29,3 +29,46 @@
 
 <!-- Datatable Demo js -->
 <script src="assets/js/components/table-datatable.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('.needs-validation');
+
+  const syncChoicesValidity = (select) => {
+    // Choices wraps the select; find the wrapper
+    const wrapper =
+      select.closest('.choices') ||
+      (select.parentElement && select.parentElement.querySelector('.choices'));
+
+    if (!wrapper) return;
+
+    // Toggle Bootstrap validity classes on the Choices wrapper
+    if (select.validity.valid) {
+      wrapper.classList.remove('is-invalid');
+      wrapper.classList.add('is-valid');
+    } else {
+      wrapper.classList.remove('is-valid');
+      wrapper.classList.add('is-invalid');
+    }
+  };
+
+  // On submit: run native validation and style everything
+  form.addEventListener('submit', function (e) {
+    if (!form.checkValidity()) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    form.classList.add('was-validated');
+
+    // Sync all Choices selects
+    form.querySelectorAll('select[data-choices]').forEach(syncChoicesValidity);
+  }, false);
+
+  // Keep select validity in sync as the user interacts
+  form.querySelectorAll('select[data-choices]').forEach((sel) => {
+    ['change', 'blur', 'invalid', 'input'].forEach(evt => {
+      sel.addEventListener(evt, () => syncChoicesValidity(sel));
+    });
+  });
+});
+</script>

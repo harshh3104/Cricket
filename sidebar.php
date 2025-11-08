@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!-- Sidenav Menu Start -->
 <div class="sidenav-menu">
     <!-- Brand Logo -->
@@ -70,9 +67,31 @@
                 <a href="index.php" class="side-nav-link">
                     <span class="menu-icon"><i class="ti ti-dashboard"></i></span>
                     <span class="menu-text"> Dashboard </span>
-                </a>
+                </a>                
             </li>
-
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarPagesTour" aria-expanded="false"
+                    aria-controls="sidebarPagesTour" class="side-nav-link">
+                    <span class="menu-icon"><i class="ti ti-trophy"></i></span>
+                    <span class="menu-text"> Tounaments </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarPagesTour">
+                    <ul class="sub-menu">
+                        <li class="side-nav-item">
+                            <a href="add_tournaments.php" class="side-nav-link">
+                                <span class="menu-text">Add Tournaments</span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="manage_tournaments.php" class="side-nav-link">
+                                <span class="menu-text">Manage Tournaments</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            
             <li class="side-nav-title mt-2">Custom</li>
 
             <li class="side-nav-item">

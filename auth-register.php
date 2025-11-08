@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
     <div class="auth-bg d-flex min-vh-100">
         <div class="row g-0 justify-content-center w-100 m-xxl-5 px-xxl-4 m-3">
             <div class="col-xxl-3 col-lg-5 col-md-6">
@@ -69,15 +68,10 @@
             </div>
         </div>
     </div>
-
-    <!-- Vendor js -->
-    <script src="assets/js/vendor.min.js"></script>
-
-    <!-- App js -->
-    <script src="assets/js/app.js"></script>
-
+    
+    <?php 
+        include "scripts.php";    
+    ?>
+    
 </body>
-
-
-<!-- Mirrored from coderthemes.com/adminto/layouts/auth-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 07 Nov 2025 04:58:39 GMT -->
 </html>

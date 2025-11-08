@@ -477,9 +477,10 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/vendor.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/pages/dashboard.js"></script>
+    
+    <?php 
+        include "scripts.php";
+    ?>
+
 </body>
 </html>

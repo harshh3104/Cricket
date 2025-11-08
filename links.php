@@ -13,6 +13,9 @@
 <!-- Icons css -->
 <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
+<!-- Custom css -->
+<link rel="stylesheet" href="assets/css/mystyle.css" type="text/css">
+
 <!-- Datatables css -->
 <link href="assets/vendor/datatables/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
 <link href="assets/vendor/datatables/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
