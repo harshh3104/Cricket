@@ -12,3 +12,11 @@
 
 <!-- Icons css -->
 <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Datatables css -->
+<link href="assets/vendor/datatables/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/vendor/datatables/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/vendor/datatables/fixedColumns.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/vendor/datatables/fixedHeader.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/vendor/datatables/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/vendor/datatables/select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
