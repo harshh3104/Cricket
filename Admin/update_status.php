@@ -1,24 +1,36 @@
+
 <?php
 include "connection.php";
 
-$id     = $_POST['id'];
-$status = $_POST['status'];
-$table  = $_POST['table'];
+error_reporting(0);
+ob_clean();
 
-$new_status = ($status == 1 ? 0 : 1);
+$id     = $_POST['id'];       
+$status = $_POST['status'];   
+$table  = $_POST['table'];    
 
-//  allowed table names
-$allowedTables = ['organizers', 'sponsers'];
+$newStatus = ($status == 1) ? 0 : 1;
 
-if(!in_array($table, $allowedTables)){
-    echo 0;
+// Allowed tables with their primary key
+$primary_keys = [
+    "tournaments" => "tid",
+    "seasons"     => "id",
+    "organizers"  => "id",
+    "sponsers"     => "id"
+];
+
+if (!array_key_exists($table, $primary_keys)) {
+    echo "0";
     exit;
 }
 
-$query = "UPDATE $table SET status='$new_status' WHERE id='$id'";
-$run = mysqli_query($conn, $query);
+$pk = $primary_keys[$table];
 
-echo $run ? 1 : 0;
+$sql = "UPDATE $table SET status='$newStatus' WHERE $pk='$id'";
 
+if (mysqli_query($conn, $sql)) {
+    echo "1";
+} else {
+    echo "0";
+}
 ?>
-
